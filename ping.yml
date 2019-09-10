@@ -1,0 +1,6 @@
+- hosts: production
+  roles: 
+    - pingpong
+    - nginx
+    - ensure-nginx
+

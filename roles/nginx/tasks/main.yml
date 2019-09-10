@@ -1,0 +1,23 @@
+- name: Install Nginx
+  become: yes
+  apt:
+    name: nginx=1.14.0-0ubuntu1.6
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+- name: Update Nginx Homepage
+  become: true
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+
+- name: Update Site Configuration  
+  become: true
+  template:
+    src: default 
+    dest: /etc/nginx/sites-available/default
+  notify: 
+    - Reload Nginx
+
+
